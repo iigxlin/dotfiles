@@ -1,8 +1,8 @@
-set number
+set number 
 syntax on
-set showcmd
 set encoding=utf-8
 set t_Co=256
+set showcmd
 filetype indent on
 
 set autoindent
@@ -24,8 +24,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-set undofile
 
 set autoread
 
