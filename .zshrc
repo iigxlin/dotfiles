@@ -25,6 +25,7 @@ if [ ! -d ~/.zplug ]; then
     git clone git@github.com:zplug/zplug.git ~/.zplug
 fi
 source ~/.zplug/init.zsh 
+zplug "plugins/git", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "dracula/zsh", as:theme
@@ -34,7 +35,7 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
-zplug load --verbose
+zplug load
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
