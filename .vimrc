@@ -1,3 +1,4 @@
+set nocompatible
 set number 
 syntax on
 set encoding=utf-8
@@ -49,3 +50,4 @@ call plug#end()
 " Plugin config
 colorscheme molokai
 let g:airline='molokai'
+let g:airline#extensions#tabline#enabled = 1
