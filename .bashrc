@@ -116,10 +116,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# autojump
+if [ ! -d /usr/share/autojump ]; then
+    sudo apt install autojump
+fi
 . /usr/share/autojump/autojump.sh
 
 # proxy
 export http_proxy='http://localhost:8118'
 export https_proxy='http://localhost:8118'
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
