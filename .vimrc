@@ -31,6 +31,12 @@ set autoread
 set wildmenu
 set wildmode=longest:list,full
 
+" mapping
+let mapleader=',' " change the key <leader>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>d :bd<CR>
+
 " Plugin
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -45,6 +51,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'scrooloose/nerdtree'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Plugin config
