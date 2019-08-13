@@ -12,7 +12,6 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
-set textwidth=80
 set wrap
 "set nowrap
 "set wrapmargin=4
@@ -30,6 +29,8 @@ set autoread
 
 set wildmenu
 set wildmode=longest:list,full
+
+set backspace=indent,eol,start
 
 " mapping
 let mapleader=',' " change the key <leader>
@@ -58,3 +59,4 @@ call plug#end()
 colorscheme molokai
 let g:airline='molokai'
 let g:airline#extensions#tabline#enabled = 1
+map <C-n> :NERDTreeToggle<CR>
