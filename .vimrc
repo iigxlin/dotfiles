@@ -52,7 +52,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'scrooloose/nerdtree'
-Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Plugin config

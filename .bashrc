@@ -116,6 +116,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# default editor
+export EDITOR=/usr/bin/vim
+
+# alias
+alias g='git'
+alias gaa='git add --all'
+alias gc='git commit -v'
+alias gp='git push'
+
 # autojump
 if [ ! -d /usr/share/autojump ]; then
     sudo apt install autojump
@@ -123,8 +132,8 @@ fi
 . /usr/share/autojump/autojump.sh
 
 # proxy
-export http_proxy='http://localhost:8118'
-export https_proxy='http://localhost:8118'
+export http_proxy='http://localhost:7890'
+export https_proxy='http://localhost:7890'
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
