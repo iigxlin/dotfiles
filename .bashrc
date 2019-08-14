@@ -120,6 +120,9 @@ fi
 export EDITOR=/usr/bin/vim
 
 # alias
+if grep -q Microsoft /proc/version; then
+    alias psh='powershell.exe'
+fi
 alias g='git'
 alias gaa='git add --all'
 alias gc='git commit -v'
