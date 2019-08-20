@@ -52,9 +52,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'scrooloose/nerdtree'
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 call plug#end()
 
 " Plugin config
+let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 colorscheme molokai
 let g:airline='molokai'
 let g:airline#extensions#tabline#enabled = 1
