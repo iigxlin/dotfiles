@@ -129,6 +129,8 @@ alias gaa='git add --all'
 alias gc='git commit -v'
 alias gp='git push'
 
+alias cd..='cd ..'
+
 # autojump
 if [ ! -d /usr/share/autojump ]; then
     sudo apt install autojump
