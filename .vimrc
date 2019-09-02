@@ -61,6 +61,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'ludovicchabant/vim-gutentags'
@@ -69,23 +70,13 @@ Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 " Plugin config
-let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 colorscheme molokai
 let g:airline='molokai'
 let g:airline#extensions#tabline#enabled = 1
 map <C-n> :NERDTreeToggle<CR>
 " YouCompleteMe
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_dignostics_ui = 0
+let g:ycm_extra_conf_globlist = ['~/dev/*', '!~/*']
 let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifier_from_comments_and_strings = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_key_invoke_completion = '<c-z>'
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -102,4 +93,7 @@ let g:asyncrun_open = 6 " the number of lines of quickfix window
 let g:asyncrun_bell = 1 " the bell rings when the task is done
 " use f10 to open/close asyncrun quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
