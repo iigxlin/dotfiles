@@ -19,16 +19,34 @@ usage() {
 base_install() {
     echo "--------- Install Base Packages Now ---------"
     if command -v apt > /dev/null; then
-	apt update
-	apt upgrade
+        apt update
+        apt upgrade
         apt install git \
             curl \
             cmake \
             build-essential \
             python3-dev \
             autojump \
-            zsh
+            zsh \
+            gcc \
+            make
     fi
+
+    # Universal Ctags
+    apt install pkg-config autoconf automake \
+        python3-docutils \
+        libseccomp-dev \
+        libjansson-dev \
+        libyaml-dev \
+        libxml2-dev
+    git clone git@github.com:universal-ctags/ctags.git
+    (
+    cd ctags
+    ./autogen.sh
+    ./configure
+    make
+    make install
+    )
 }
 
 get_dotfiles() {
