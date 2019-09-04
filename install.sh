@@ -19,6 +19,8 @@ usage() {
 base_install() {
     echo "--------- Install Base Packages Now ---------"
     if command -v apt > /dev/null; then
+	apt update
+	apt upgrade
         apt install git \
             curl \
             cmake \

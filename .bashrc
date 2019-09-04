@@ -137,9 +137,5 @@ if [ ! -d /usr/share/autojump ]; then
 fi
 . /usr/share/autojump/autojump.sh
 
-# proxy
-export http_proxy='http://localhost:7890'
-export https_proxy='http://localhost:7890'
-
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
