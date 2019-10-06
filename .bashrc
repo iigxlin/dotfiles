@@ -131,6 +131,13 @@ alias gp='git push'
 
 alias cd..='cd ..'
 
+alias pyinit='source venv/bin/activate'
+
+# X Server
+if grep -q Microsoft /proc/version; then
+    export DISPLAY=localhost:0
+fi
+
 # autojump
 if [ ! -d /usr/share/autojump ]; then
     sudo apt install autojump
