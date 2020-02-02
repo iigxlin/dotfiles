@@ -59,7 +59,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clang-completer'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -70,8 +69,7 @@ Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 " Plugin config
-colorscheme molokai
-let g:airline='molokai'
+" let g:airline='molokai'
 let g:airline#extensions#tabline#enabled = 1
 map <C-n> :NERDTreeToggle<CR>
 " YouCompleteMe

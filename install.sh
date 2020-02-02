@@ -29,16 +29,18 @@ base_install() {
             autojump \
             zsh \
             gcc \
-            make
-    fi
+            make \
 
+            pkg-config autoconf automake \
+            python3-docutils \
+            libseccomp-dev \
+            libjansson-dev \
+            libyaml-dev \
+            libxml2-dev
+    else if command -v pacman > /dev/null; then
+        pacman -S autojump
+    fi
     # Universal Ctags
-    apt install pkg-config autoconf automake \
-        python3-docutils \
-        libseccomp-dev \
-        libjansson-dev \
-        libyaml-dev \
-        libxml2-dev
     git clone git@github.com:universal-ctags/ctags.git
     (
     cd ctags

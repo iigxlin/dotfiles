@@ -10,13 +10,6 @@ HISTFILE=~/.zsh_history
 
 export EDITOR=/usr/bin/vim
 
-# autojump
-if [ ! -d /usr/share/autojump ]; then
-    echo 'Installing autojump ... '
-    sudo apt install autojump
-fi
-. /usr/share/autojump/autojump.zsh 
-
 # zplug
 if [ ! -d ~/.zplug ]; then
     echo 'Installing zplug ... '
@@ -35,8 +28,13 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
-# fzf
+# file
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
+
+# proxy
+export http_proxy=http://127.0.0.1:1080
+export https_proxy=http://127.0.0.1:1080
 
 # alias
 if grep -q Microsoft /proc/version; then
@@ -44,3 +42,5 @@ if grep -q Microsoft /proc/version; then
     alias expl='explorer.exe'
 fi
 
+# Rust
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
