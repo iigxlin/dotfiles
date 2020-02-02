@@ -12,6 +12,8 @@ set shiftwidth=4
 set expandtab
 set softtabstop=4
 
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2 expandtab
+
 set wrap
 "set nowrap
 "set wrapmargin=4
