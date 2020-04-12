@@ -39,6 +39,8 @@ base_install() {
             libxml2-dev
     else if command -v pacman > /dev/null; then
         pacman -S autojump
+    else if command -v brew > /dev/null; then
+        brew install autojump
     fi
     # Universal Ctags
     git clone git@github.com:universal-ctags/ctags.git

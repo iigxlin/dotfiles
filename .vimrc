@@ -1,10 +1,23 @@
+" General Config
+
 set nocompatible
 set number 
+set backspace=indent,eol,start
 syntax on
 set encoding=utf-8
 set t_Co=256
 set showcmd
+set autoread
 filetype indent on
+
+set hidden
+
+" MacVim
+
+set guifont=Monaco:h16
+set transparency=30
+
+" Identation
 
 set autoindent
 set tabstop=4
@@ -27,12 +40,14 @@ set incsearch
 set ignorecase
 set smartcase
 
-set autoread
+" Completion
 
 set wildmenu
 set wildmode=longest:list,full
-
-set backspace=indent,eol,start
+set wildignore=*.o,*.obj,*~
+set wildignore+=*DS_Store*
+set wildignore+=*.gem
+set wildignore+=*.png,*.jpg,*.gif
 
 " change default directory
 let s:vim_swapfiles_dir = expand('~/.vim/.swp/')
@@ -58,16 +73,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clang-completer'}
+Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clangd-completer'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/vim-easy-align'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
 call plug#end()
 
 " Plugin config

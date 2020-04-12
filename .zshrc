@@ -30,17 +30,23 @@ zplug load
 
 # file
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # proxy
-export http_proxy=http://127.0.0.1:1080
-export https_proxy=http://127.0.0.1:1080
+export http_proxy=http://127.0.0.1:1087
+export https_proxy=http://127.0.0.1:1087
+export all_proxy=socks5://127.0.0.1:1086
 
-# alias
-if grep -q Microsoft /proc/version; then
-    alias psh='powershell.exe'
-    alias expl='explorer.exe'
-fi
-
-# Rust
-[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+# System Specific
+case `uname` in 
+Darwin)
+    alias vim='mvim -v'
+    [ -f /usr/local/bin/mvim ] && export EDITOR='/usr/local/bin/mvim -v'
+;;
+Linux)
+    # commands for Linux
+;;
+FreeBSD)
+    # commands for FreeBSD
+;;
+esac
