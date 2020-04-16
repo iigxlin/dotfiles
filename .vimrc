@@ -12,6 +12,8 @@ filetype indent on
 
 set hidden
 
+set completeopt=menu,menuone
+
 " MacVim
 
 set guifont=Monaco:h16
@@ -26,6 +28,8 @@ set expandtab
 set softtabstop=4
 
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType css setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 
 set wrap
 "set nowrap
@@ -76,8 +80,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clangd-completer'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'ludovicchabant/vim-gutentags'
@@ -85,15 +87,29 @@ Plug 'junegunn/vim-easy-align'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
+Plug 'dense-analysis/ale'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 " Plugin config
-" let g:airline='molokai'
+
 let g:airline#extensions#tabline#enabled = 1
 map <C-n> :NERDTreeToggle<CR>
+
 " YouCompleteMe
-let g:ycm_extra_conf_globlist = ['~/dev/*', '!~/*']
 let g:ycm_server_log_level = 'info'
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings = 1
+
+let g:ycm_filetype_whilelist = {
+                        \ "c": 1, "cpp": 1, "sh": 1, "zsh": 1,
+                        \ "python": 1, "go": 1,
+                        \ }
+
 " vim-gutentags
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -105,12 +121,55 @@ let g:gutentags_ctags_extra_args = ['--c-kinds=+px']
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
 endif
+
 " asyncrun.vim
 let g:asyncrun_open = 6 " the number of lines of quickfix window
 let g:asyncrun_bell = 1 " the bell rings when the task is done
 " use f10 to open/close asyncrun quickfix window
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" LeaderF
+" " Show icons, icons are shown by default
+let g:Lf_ShowDevIcons = 1
+" For GUI vim, the icon font can be specify like this, for example
+let g:Lf_DevIconsFont = "DejaVuSansMono Nerd Font Mono"
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+
+" ALE
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
 
