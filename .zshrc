@@ -9,6 +9,34 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 export EDITOR=/usr/bin/vim
+[ -f /usr/local/bin/mvim ] && \
+    export EDITOR='/usr/local/bin/mvim -v' \
+    alias vim='mvim -v'
+
+# file
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# proxy
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7891
+export no_proxy=localhost,127.0.0.1
+
+# System Specific
+case `uname` in 
+Darwin)
+    # commands for macOS
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
+    export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+;;
+Linux)
+    # commands for Linux
+;;
+FreeBSD)
+    # commands for FreeBSD
+;;
+esac
 
 # zplug
 if [ ! -d ~/.zplug ]; then
@@ -27,26 +55,3 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
-
-# file
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-# proxy
-export http_proxy=http://127.0.0.1:1087
-export https_proxy=http://127.0.0.1:1087
-export all_proxy=socks5://127.0.0.1:1086
-
-# System Specific
-case `uname` in 
-Darwin)
-    alias vim='mvim -v'
-    [ -f /usr/local/bin/mvim ] && export EDITOR='/usr/local/bin/mvim -v'
-;;
-Linux)
-    # commands for Linux
-;;
-FreeBSD)
-    # commands for FreeBSD
-;;
-esac
