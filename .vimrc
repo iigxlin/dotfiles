@@ -81,16 +81,13 @@ Plug 'Valloric/YouCompleteMe', {'do': 'python3 ./install.py --clangd-completer'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'junegunn/vim-easy-align'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'dense-analysis/ale'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-unimpaired'
+Plug 'godlygeek/tabular'
 call plug#end()
 
 " Plugin config
