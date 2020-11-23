@@ -16,8 +16,12 @@ set completeopt=menu,menuone
 
 " MacVim
 
-set guifont=Monaco:h16
-set transparency=30
+if has("gui_running")
+    if has("gui_macvim")
+        set guifont=Monaco:h16
+        set transparency=10
+    endif
+endif
 
 " Identation
 

@@ -20,7 +20,7 @@ export EDITOR=/usr/bin/vim
 # proxy
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7890
-export all_proxy=socks5://127.0.0.1:7891
+export all_proxy=socks5://127.0.0.1:7890
 export no_proxy=localhost,127.0.0.1
 
 # System Specific
@@ -29,6 +29,7 @@ Darwin)
     # commands for macOS
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
     export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+    [ -d $HOME/.gem ] && export GEM_HOME="$HOME/.gem"
 ;;
 Linux)
     # commands for Linux
@@ -55,3 +56,4 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
