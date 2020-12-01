@@ -23,6 +23,9 @@ if has("gui_running")
     endif
 endif
 
+if has("macunix")
+endif
+
 " Identation
 
 set autoindent

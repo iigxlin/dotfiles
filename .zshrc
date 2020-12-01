@@ -9,9 +9,6 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 export EDITOR=/usr/bin/vim
-[ -f /usr/local/bin/mvim ] && \
-    export EDITOR='/usr/local/bin/mvim -v' \
-    alias vim='mvim -v'
 
 # file
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -27,9 +24,6 @@ export no_proxy=localhost,127.0.0.1
 case `uname` in 
 Darwin)
     # commands for macOS
-    export PATH="/usr/local/opt/openjdk/bin:$PATH"
-    export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-    [ -d $HOME/.gem ] && export GEM_HOME="$HOME/.gem"
 ;;
 Linux)
     # commands for Linux
