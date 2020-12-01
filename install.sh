@@ -20,20 +20,16 @@ get_dotfiles() {
     (
     echo "--------- Get Dotfiles Now ---------"
 
-    read -r -p "It will remove the .dotfiles folder if it exists and overwrite all dotfiles. Are you sure? [y/N] " response
-    response=${response,,} # tolower
-    if [[ "$response" =~ ^(yes|y)$ ]]; then
 
-        cd "$HOME"
-        rm -rf .dotfiles
-        git clone https://github.com/humpylin/dotfiles .dotfiles
+    cd "$HOME"
 
-        rm -rf .vimrc .tmux.conf .bashrc .zshrc
-        ln -s .dotfiles/.vimrc .vimrc
-        ln -s .dotfiles/.tmux.conf .tmux.conf
-        ln -s .dotfiles/.bashrc .bashrc
-        ln -s .dotfiles/.zshrc .zshrc
-    fi
+    rm -rf .vimrc .tmux.conf .bashrc .zshrc .i3/config .emacs.d/init.el
+    ln -s .dotfiles/.vimrc .vimrc
+    ln -s .dotfiles/.tmux.conf .tmux.conf
+    ln -s .dotfiles/.bashrc .bashrc
+    ln -s .dotfiles/.zshrc .zshrc
+    ln -s .dotfiles/.emacs.d/init.el .emacs.d/init.el
+    ln -s .dotfiles/.i3/config .i3/config
     )
 }
 
