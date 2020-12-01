@@ -11,46 +11,8 @@ check_is_sudo() {
 
 usage() {
     echo "Usage: sudo bash install.sh [OPTION]"
-    echo "  base - install base pkgs"
-    echo "  dotfiles - get dotfiles from GitHub and set soft links"
+    echo "  dotfiles - link all dotfiles"
     echo "  all - install all things listed above"
-}
-
-base_install() {
-    echo "--------- Install Base Packages Now ---------"
-    if command -v apt > /dev/null; then
-        apt update
-        apt upgrade
-        apt install git \
-            curl \
-            cmake \
-            build-essential \
-            python3-dev \
-            autojump \
-            zsh \
-            gcc \
-            make \
-
-            pkg-config autoconf automake \
-            python3-docutils \
-            libseccomp-dev \
-            libjansson-dev \
-            libyaml-dev \
-            libxml2-dev
-    else if command -v pacman > /dev/null; then
-        pacman -S autojump
-    else if command -v brew > /dev/null; then
-        brew install autojump
-    fi
-    # Universal Ctags
-    git clone git@github.com:universal-ctags/ctags.git
-    (
-    cd ctags
-    ./autogen.sh
-    ./configure
-    make
-    make install
-    )
 }
 
 get_dotfiles() {
@@ -58,21 +20,16 @@ get_dotfiles() {
     (
     echo "--------- Get Dotfiles Now ---------"
 
-    read -r -p "It will remove the dotfiles folder if it exists and overwrite all dotfiles. Are you sure? [y/N] " response
-    response=${response,,} # tolower
-    if [[ "$response" =~ ^(yes|y)$ ]]; then
 
-        cd "$HOME"
-        rm -rf dotfiles
-        git clone git@github.com:humpylin/dotfiles.git
+    cd "$HOME"
 
-        rm -rf .vimrc .tmux.conf .bashrc .zshrc .gitconfig
-        ln -s dotfiles/.vimrc .vimrc
-        ln -s dotfiles/.tmux.conf .tmux.conf
-        ln -s dotfiles/.bashrc .bashrc
-        ln -s dotfiles/.gitconfig .gitconfig
-        ln -s dotfiles/.zshrc .zshrc
-    fi
+    rm -rf .vimrc .tmux.conf .bashrc .zshrc .i3/config .emacs.d/init.el
+    ln -s .dotfiles/.vimrc .vimrc
+    ln -s .dotfiles/.tmux.conf .tmux.conf
+    ln -s .dotfiles/.bashrc .bashrc
+    ln -s .dotfiles/.zshrc .zshrc
+    ln -s .dotfiles/.emacs.d/init.el .emacs.d/init.el
+    ln -s .dotfiles/.i3/config .i3/config
     )
 }
 
@@ -87,7 +44,6 @@ main() {
     check_is_sudo
 
     if [[ $cmd == all ]]; then
-        base_install
         get_dotfiles
     fi
 }
