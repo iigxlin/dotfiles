@@ -13,7 +13,6 @@ HISTFILE=~/.zsh_history
 # file
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # proxy
 export http_proxy=http://127.0.0.1:7890
@@ -25,9 +24,13 @@ export no_proxy=localhost,127.0.0.1
 case `uname` in 
 Darwin)
     # commands for macOS
+    [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
     # ruby
     [ -d /usr/local/opt/ruby/bin ] && export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+    # java
+    [ -d /usr/local/opt/openjdk/bin ] && export PATH="/usr/local/opt/openjdk/bin:$PATH"
 ;;
 Linux)
     # commands for Linux
@@ -54,7 +57,6 @@ source ~/.zplug/init.zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
 zplug "dracula/zsh", as:theme
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
