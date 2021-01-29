@@ -10,8 +10,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# file
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # proxy
@@ -65,4 +63,3 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
-

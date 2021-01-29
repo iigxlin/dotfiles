@@ -8,6 +8,7 @@ set encoding=utf-8
 set t_Co=256
 set showcmd
 set autoread
+set mouse=a
 filetype indent on
 
 set hidden
@@ -95,6 +96,8 @@ Plug 'dense-analysis/ale'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
+Plug 'ledger/vim-ledger', {'for': 'ledger'}
+Plug 'puremourning/vimspector'
 call plug#end()
 
 " Plugin config
@@ -177,3 +180,5 @@ hi! SpellBad gui=undercurl guisp=red
 hi! SpellCap gui=undercurl guisp=blue
 hi! SpellRare gui=undercurl guisp=magenta
 
+" Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
