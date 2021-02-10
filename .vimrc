@@ -98,7 +98,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'puremourning/vimspector'
-Plug 'nathangrigg/vim-beancount', {'for': 'beancount'}
+Plug 'mileszs/ack.vim'
 call plug#end()
 
 " Plugin config
@@ -178,3 +178,10 @@ hi! SpellRare gui=undercurl guisp=magenta
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
+
+" Ack.vim
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
