@@ -2,17 +2,13 @@
 (require 'package)
 (add-to-list 'package-archives
 	                  '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
-(package-refresh-contents)
 
 (when (version<= "26.0.50" emacs-version)
   (global-display-line-numbers-mode))
 
-;; Download Evil
+;; Evil
 (unless (package-installed-p 'evil)
     (package-install 'evil))
-
-;; Enable Evil
 (require 'evil)
 (evil-mode 1)
 (custom-set-variables
@@ -20,7 +16,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(evil)))
+ '(package-selected-packages '(ledger-mode evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,3 +26,15 @@
 
 ;; Org Mode
 (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+
+;; ledger-mode
+(unless (package-installed-p 'ledger-mode)
+  (package-install 'ledger-mode))
+(require 'ledger-mode)
+(add-to-list 'auto-mode-alist '("\\.journal$" . ledger-mode))
+(add-hook 'ledger-mode-hook
+  (lambda ()
+    (setq-local tab-always-indent 'complete)
+    (setq-local completion-cycle-threshold t)
+    (setq-local ledger-complete-in-steps t)))
+(setq ledger-highlight-xact-under-point nil)
