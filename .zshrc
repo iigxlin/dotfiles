@@ -29,6 +29,10 @@ Darwin)
 
     # java
     [ -d /usr/local/opt/openjdk/bin ] && export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+    # Alias
+    alias ls='ls -G'
+    alias ll='ls -lG'
 ;;
 Linux)
     # commands for Linux
