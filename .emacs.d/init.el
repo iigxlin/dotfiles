@@ -1,7 +1,7 @@
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
-	                  '("melpa" . "https://melpa.org/packages/"))
+  '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (custom-set-variables
@@ -9,14 +9,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(auto-complete ledger-mode evil)))
+ '(package-selected-packages '(paredit auto-complete ledger-mode evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 (when (version<= "26.0.50" emacs-version)
   (global-display-line-numbers-mode))
 
@@ -48,3 +47,10 @@
   (package-install 'auto-complete))
 (require 'auto-complete)
 (ac-config-default)
+
+;; Par Edit
+(unless (package-installed-p 'paredit)
+  (package-install 'paredit))
+(require 'paredit)
+(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode 1)))
+

@@ -14,7 +14,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-[ -f ~/.dotfiles/bin ] && export PATH="$HOME/.dotfiles/bin:$PATH"
+[ -d ~/.dotfiles/bin ] && export PATH="$HOME/.dotfiles/bin:$PATH"
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
