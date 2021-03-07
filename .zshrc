@@ -14,6 +14,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+[ -f ~/.dotfiles/bin ] && export PATH="$HOME/.dotfiles/bin:$PATH"
+
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # proxy
@@ -36,7 +38,7 @@ Darwin)
 
     # Alias
     alias ls='ls -G'
-    alias ll='ls -lG'
+    alias ll='ls -lhG'
 ;;
 Linux)
     # commands for Linux
