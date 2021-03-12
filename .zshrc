@@ -18,12 +18,6 @@ HISTFILE=~/.zsh_history
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
-# proxy
-export http_proxy=http://127.0.0.1:7890
-export https_proxy=http://127.0.0.1:7890
-export all_proxy=socks5://127.0.0.1:7890
-export no_proxy=localhost,127.0.0.1
-
 # System Specific
 case `uname` in 
 Darwin)
@@ -47,14 +41,6 @@ FreeBSD)
     # commands for FreeBSD
 ;;
 esac
-
-# WSL 2
-if [[ `uname -a` =~ "microsoft" ]]; then
-    export hostip=$(cat /etc/resolv.conf | grep -oP '(?<=nameserver\ ).*')
-    export http_proxy="socks5://${hostip}:7890"
-    export https_proxy="socks5://${hostip}:7890"
-    export all_proxy="socks5://${hostip}:7890"
-fi
 
 # zplug
 if [ ! -d ~/.zplug ]; then
