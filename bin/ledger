@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+[ -f /usr/bin/ledger ] && prog=/usr/bin/ledger
 [ -f /usr/local/bin/ledger ] && prog=/usr/local/bin/ledger
 
 subcommand=$1
@@ -13,8 +14,8 @@ case $subcommand in
         $prog --no-pager reg ^Assets ^Liabilities --daily --collapse $extra_options
         ;;
     is) # Income Statement
-        $prog --current --aux-date --no-pager reg ^Expenses ^Revenues --daily --collapse $extra_options
-        $prog --current --aux-date --no-pager bal ^Expenses ^Revenues --collapse $extra_options
+        $prog --current --aux-date --no-pager reg ^Expenses ^Income --daily --collapse $extra_options
+        $prog --current --aux-date --no-pager bal ^Expenses ^Income --collapse $extra_options
         ;;
     exp) # Expense Compare
         $prog --current --aux-date --no-pager bal ^Expenses --depth 1 --sort amount -X USD $extra_options
