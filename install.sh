@@ -24,13 +24,13 @@ get_dotfiles() {
     cd "$HOME"
 
     rm -rf .vimrc .tmux.conf .bashrc .zshrc .i3/config .emacs.d/init.el .gitconfig
-    ln -s ~/.dotfiles/.vimrc .vimrc
     ln -s ~/.dotfiles/.tmux.conf .tmux.conf
     ln -s ~/.dotfiles/.bashrc .bashrc
     ln -s ~/.dotfiles/.zshrc .zshrc
     ln -s ~/.dotfiles/.emacs.d/init.el .emacs.d/init.el
     ln -s ~/.dotfiles/.i3/config .i3/config
     ln -s ~/.dotfiles/.gitconfig .gitconfig
+    echo "source ~/.dotfiles/.vim/init.vim" > ~/.vimrc
     )
 }
 
