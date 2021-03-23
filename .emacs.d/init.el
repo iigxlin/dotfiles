@@ -4,12 +4,18 @@
   '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(dolist (package '(use-package))
+  (unless (package-installed-p package)
+    (package-install package)))
+(require 'use-package)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(paredit auto-complete ledger-mode evil)))
+ '(package-selected-packages
+   '(evil-escape counsel evil-org paredit auto-complete ledger-mode evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -26,9 +32,26 @@
     (package-install 'evil))
 (require 'evil)
 (evil-mode 1)
+(evil-set-leader 'normal ",")
+
+;; Evil escape
+(unless (package-installed-p 'evil-escape)
+    (package-install 'evil-escape))
+(require 'evil-escape)
+(evil-escape-mode)
+(setq-default
+ evil-escape-key-sequence "jk"
+ evil-escape-unordered-key-sequence t)
 
 ;; Org Mode
 (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+(use-package evil-org
+	     :ensure t
+	     :after org
+	     :hook (org-mode . (lambda () evil-org-mode))
+	     :config
+	     (require 'evil-org-agenda)
+	     (evil-org-agenda-set-keys))
 
 ;; ledger-mode
 (unless (package-installed-p 'ledger-mode)
@@ -54,3 +77,11 @@
 (require 'paredit)
 (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode 1)))
 
+;; Counsel
+(unless (package-installed-p 'counsel)
+  (package-install 'counsel))
+(ivy-mode)
+(setq ivy-use-virutal-buffers t)
+(setq enable-recursive-minibuffers t)
+(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
+(evil-define-key 'normal 'global (kbd "go") 'counsel-git-grep)

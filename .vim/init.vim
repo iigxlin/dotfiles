@@ -13,7 +13,7 @@ filetype indent on
 set modeline
 set textwidth=72
 set formatoptions+=mB
-set formatoptions-=t
+set formatoptions-=tc
 set secure
 
 set hidden
@@ -29,8 +29,19 @@ endif
 if has("gui_running")
     if has("gui_macvim")
         set guifont=Monaco:h15
-        set noimdisable
         set transparency=10
+        set noimdisable
+
+        noremap <D-1> :tabn 1<CR>
+        noremap <D-2> :tabn 2<CR>
+        noremap <D-3> :tabn 3<CR>
+        noremap <D-4> :tabn 4<CR>
+        noremap <D-5> :tabn 5<CR>
+        noremap <D-6> :tabn 6<CR>
+        noremap <D-7> :tabn 7<CR>
+        noremap <D-8> :tabn 8<CR>
+        noremap <D-9> :tabn 9<CR>
+        noremap <D-0> :tablat<CR>
     endif
 endif
 
@@ -83,8 +94,12 @@ set tags=./.tags;,.tags
 
 " mapping
 let mapleader=',' " change the key <leader>
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+inoremap jk <Esc>
+nnoremap [w <c-w>h <CR>
+nnoremap [ww <c-w>k <CR>
+nnoremap ]w :wincmd l <CR>
+nnoremap ]ww :wincmd j <CR>
+nnoremap <leader>cd :cd %:p:h<CR> :pwd<CR>
 
 source ~/.dotfiles/.vim/plugins/init.vim
 
