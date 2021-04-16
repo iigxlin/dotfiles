@@ -59,3 +59,5 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
+alias emacs='emacs -nw'

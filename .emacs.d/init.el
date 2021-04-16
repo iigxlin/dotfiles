@@ -1,87 +1,101 @@
 ;; Set up package.el to work with MELPA
 (require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "https://melpa.org/packages/"))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
+(when (version<= "26.0.50" emacs-version)
+  (global-display-line-numbers-mode))
+(setq vc-follow-symlinks t)
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match
+that used by the user's shell.
+
+This is particularly useful under Mac OS X and macOS, where GUI
+apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string
+			  "[ \t\n]*$" "" (shell-command-to-string
+					  "$SHELL --login -c 'echo $PATH'"
+						    ))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
 
 (dolist (package '(use-package))
   (unless (package-installed-p package)
+    (package-refresh-contents)
     (package-install package)))
 (require 'use-package)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(evil-escape counsel evil-org paredit auto-complete ledger-mode evil)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(when (version<= "26.0.50" emacs-version)
-  (global-display-line-numbers-mode))
+(setq use-package-always-ensure t)
 
 (xterm-mouse-mode 1) ;; Enable mouse
+(add-to-list 'load-path "~/.dotfiles/.emacs.d/modes/")
 
-;; Evil
-(unless (package-installed-p 'evil)
-    (package-install 'evil))
-(require 'evil)
-(evil-mode 1)
-(evil-set-leader 'normal ",")
+(use-package atom-one-dark-theme
+  :config
+  (load-theme 'atom-one-dark t))
+(set-face-attribute 'default nil :font "Monaco" :height 150)
 
-;; Evil escape
-(unless (package-installed-p 'evil-escape)
-    (package-install 'evil-escape))
-(require 'evil-escape)
-(evil-escape-mode)
-(setq-default
- evil-escape-key-sequence "jk"
- evil-escape-unordered-key-sequence t)
+(use-package which-key)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
 
-;; Org Mode
-(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
-(use-package evil-org
-	     :ensure t
-	     :after org
-	     :hook (org-mode . (lambda () evil-org-mode))
-	     :config
-	     (require 'evil-org-agenda)
-	     (evil-org-agenda-set-keys))
+(require 'init-evil-mode)
+(require 'init-org-mode)
 
 ;; ledger-mode
-(unless (package-installed-p 'ledger-mode)
-  (package-install 'ledger-mode))
-(require 'ledger-mode)
-(add-to-list 'auto-mode-alist '("\\.journal$" . ledger-mode))
-(add-hook 'ledger-mode-hook
-  (lambda ()
-    (setq-local tab-always-indent 'complete)
-    (setq-local completion-cycle-threshold t)
-    (setq-local ledger-complete-in-steps t)))
-(setq ledger-highlight-xact-under-point nil)
+(use-package ledger-mode
+  :config
+    (add-to-list 'auto-mode-alist '("\\.journal$" . ledger-mode))
+    (add-hook 'ledger-mode-hook
+    (lambda ()
+	(setq-local tab-always-indent 'complete)
+	(setq-local completion-cycle-threshold t)
+	(setq-local ledger-complete-in-steps t)))
+    (setq ledger-highlight-xact-under-point nil))
 
-;; Auto-Complete
-(unless (package-installed-p 'auto-complete)
-  (package-install 'auto-complete))
-(require 'auto-complete)
-(ac-config-default)
+;; Company Mode
+(use-package company
+  :hook ((after-init . global-company-mode)
+	 (org-mode . (lambda () (company-mode -1)))
+	 (ledger-mode . (lambda () (company-mode -1)))))
 
-;; Par Edit
-(unless (package-installed-p 'paredit)
-  (package-install 'paredit))
-(require 'paredit)
-(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode 1)))
+;; Projectile
+(use-package projectile
+  :config
+  (setq projectile-cache-file (expand-file-name ".cache/projectile" user-emacs-directory))
+  (projectile-mode 1)
+  (evil-define-key 'normal projectile-mode-map
+    (kbd "<leader>p") 'projectile-command-map))
 
-;; Counsel
-(unless (package-installed-p 'counsel)
-  (package-install 'counsel))
-(ivy-mode)
-(setq ivy-use-virutal-buffers t)
-(setq enable-recursive-minibuffers t)
-(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
-(evil-define-key 'normal 'global (kbd "go") 'counsel-git-grep)
+(use-package counsel
+  :after evil
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-fuzzy)
+	  (t . ivy--regex-plus)))
+  (evil-define-key 'normal ivy-mode-map
+    (kbd "<leader>fb") 'ivy-switch-buffer
+    (kbd "<leader>fm") 'counsel-recentf))
+
+(use-package vterm
+  :config
+  (setq vterm-kill-buffer-on-exit t))
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-items '((recents . 5)
+			  (bookmarks . 5)
+			  (projects . 5)
+			  (agenda . 5)
+			  (registers . 5))))

@@ -1,1 +1,1 @@
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
