@@ -1,5 +1,6 @@
 (use-package org
   :after evil
+  :commands org-agenda
   :config
   (setq org-directory "~/notes/")
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
@@ -14,7 +15,7 @@
   (setq org-agenda-start-on-weekday 0)
   (setq org-adapt-indentation nil)
   (setq org-return-follows-link t)
-  (setq org-log-done t)
+  (setq org-descriptive-links nil)
   (evil-define-key 'normal 'global
     (kbd "<leader>a") 'org-agenda
     (kbd "<leader>l") 'org-store-link
@@ -22,28 +23,36 @@
   (evil-define-key 'normal org-mode-map
     (kbd "TAB") 'org-cycle
     (kbd "RET") 'org-open-at-point)
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
+  ; todo
   (setq org-todo-keywords
-	'((sequence "TODO" "|" "DONE" "CANCELED")))
+	'((sequence "TODO" "NEXT" "WAITING" "SOMEDAY" "PROJECT" "|" "DONE" "CANCELED")))
+  (setq org-log-done t)
+
+  ; tags
   (setq org-tag-alist '((:startgroup . nil)
 			("work" . ?w) ("home" . ?h) ("errants" . ?e)
 			(:endgroup . nil)
 			("@phone" . ?p)))
 
-  (setq org-icalendar-include-todo t)
-  (setq org-icalendar-combined-agenda-file "~/notes/org.ics")
-  (add-hook 'org-mode-hook
-    (lambda ()
-	(add-hook 'after-save-hook 'org-icalendar-combine-agenda-files nil t))))
+  ; org babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t))))
 
 (use-package evil-org
   :ensure t
   :after (org evil)
   :hook (org-mode . (lambda () (evil-org-mode)))
-		      
   :config
   (evil-org-set-key-theme '(navigation insert textobjects additional calendar todo))
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  (evil-define-key 'motion org-agenda-mode-map
+    (kbd "q") (lambda ()
+		(interactive)
+		(org-save-all-org-buffers)
+		(org-agenda-quit))))
 
 (provide 'init-org-mode)

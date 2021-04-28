@@ -8,22 +8,7 @@
 (setq vc-follow-symlinks t)
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
-
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match
-that used by the user's shell.
-
-This is particularly useful under Mac OS X and macOS, where GUI
-apps are not started from a shell."
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string
-			  "[ \t\n]*$" "" (shell-command-to-string
-					  "$SHELL --login -c 'echo $PATH'"
-						    ))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-(set-exec-path-from-shell-PATH)
+(setq-default fill-column 72)
 
 (dolist (package '(use-package))
   (unless (package-installed-p package)
@@ -61,9 +46,9 @@ apps are not started from a shell."
 
 ;; Company Mode
 (use-package company
-  :hook ((after-init . global-company-mode)
-	 (org-mode . (lambda () (company-mode -1)))
-	 (ledger-mode . (lambda () (company-mode -1)))))
+  :init
+  (setq company-global-modes '(emacs-lisp-mode))
+  :hook ((after-init . global-company-mode)))
 
 ;; Projectile
 (use-package projectile
@@ -80,7 +65,7 @@ apps are not started from a shell."
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-re-builders-alist
-	'((t . ivy--regex-fuzzy)
+	'((read-file-name-internal . ivy--regex-fuzzy)
 	  (t . ivy--regex-plus)))
   (evil-define-key 'normal ivy-mode-map
     (kbd "<leader>fb") 'ivy-switch-buffer
@@ -94,8 +79,26 @@ apps are not started from a shell."
   :ensure t
   :config
   (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner nil)
   (setq dashboard-items '((recents . 5)
 			  (bookmarks . 5)
 			  (projects . 5)
 			  (agenda . 5)
 			  (registers . 5))))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+	 ("\\.md\\'" . markdown-mode)
+	 ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown"))
+
+(use-package exec-path-from-shell
+  :if (memq window-system '(mac ns))
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+(use-package avy)
