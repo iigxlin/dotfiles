@@ -2,6 +2,7 @@
   :after evil
   :commands org-agenda
   :config
+  (require 'org-tempo)
   (setq org-directory "~/notes/")
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (setq org-capture-templates
@@ -23,23 +24,40 @@
   (evil-define-key 'normal org-mode-map
     (kbd "TAB") 'org-cycle
     (kbd "RET") 'org-open-at-point)
-  (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
-  ; todo
+  ;; todo
   (setq org-todo-keywords
 	'((sequence "TODO" "NEXT" "WAITING" "SOMEDAY" "PROJECT" "|" "DONE" "CANCELED")))
   (setq org-log-done t)
 
-  ; tags
+  ;; tags
   (setq org-tag-alist '((:startgroup . nil)
 			("work" . ?w) ("home" . ?h) ("errants" . ?e)
 			(:endgroup . nil)
 			("@phone" . ?p)))
 
-  ; org babel
+  ;; org babel
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((shell . t))))
+
+(use-package org-agenda
+  :ensure nil
+  :init
+  (setq org-agenda-dim-blocked-tasks nil)
+  (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
+  (setq org-deadline-warning-days 10)
+  (setq org-agenda-compact-blocks t)
+  (setq org-agenda-custom-commands
+	'(("d" "Daily agenda and all TODOs"
+	   ((tags "PRIORITY=\"A\""
+		  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+		   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+	    (agenda "" ((org-agenda-ndays-to-span 1)))
+	    (alltodo ""
+		     ((org-agenda-skip-function '(or (org-agenda-skip-if nil '(scheduled deadline))))
+		      (org-agenda-overriding-header "All normal priority tasks:"))))))))
+
 
 (use-package evil-org
   :ensure t

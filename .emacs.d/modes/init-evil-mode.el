@@ -5,7 +5,8 @@
   (setq evil-want-integration t
 	evil-want-C-u-scroll t
 	evil-wannt-fine-undo t
-	evil-want-keybinding nil)
+	evil-want-keybinding nil
+	evil-disable-insert-state-bindings t)
   :config
   (evil-set-leader 'normal ",")
   (evil-set-undo-system 'undo-tree)

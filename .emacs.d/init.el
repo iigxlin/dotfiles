@@ -25,7 +25,11 @@
   (load-theme 'atom-one-dark t))
 (set-face-attribute 'default nil :font "Monaco" :height 150)
 
-(use-package which-key)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
@@ -75,17 +79,6 @@
   :config
   (setq vterm-kill-buffer-on-exit t))
 
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-startup-banner nil)
-  (setq dashboard-items '((recents . 5)
-			  (bookmarks . 5)
-			  (projects . 5)
-			  (agenda . 5)
-			  (registers . 5))))
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -102,3 +95,8 @@
   (exec-path-from-shell-initialize))
 
 (use-package avy)
+
+(use-package paredit
+  :hook ((emacs-lisp-mode . enable-paredit-mode)
+	 (lisp-mode . enable-paredit-mode)
+	 (scheme-mode . enable-paredit-mode)))
