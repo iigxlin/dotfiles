@@ -33,6 +33,7 @@ Darwin)
     # Alias
     alias ls='ls -G'
     alias ll='ls -lhG'
+    alias bug='brew upgrade --greedy'
 ;;
 Linux)
     # commands for Linux
