@@ -4,6 +4,8 @@ setopt histignorealldups sharehistory
 bindkey -e
 EDITOR=vim
 
+export LANG=en_US.UTF-8
+
 # Edit command line
 autoload -U edit-command-line
 zle -N edit-command-line

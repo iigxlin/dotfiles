@@ -24,6 +24,9 @@ if $COLORTERM is 'truecolor'
     set termguicolors
 endif
 
+" Correct background rendering in some terminal
+let &t_ut=''
+
 " MacVim
 
 if has("gui_running")
