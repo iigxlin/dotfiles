@@ -1,6 +1,9 @@
 (use-package org
   :after evil
   :commands org-agenda
+  :hook ((org-mode . (lambda () (setq tab-width 4))))
+  :init
+  (setq org-src-tab-acts-natively t)
   :config
   (require 'org-tempo)
   (setq org-directory "~/notes/")

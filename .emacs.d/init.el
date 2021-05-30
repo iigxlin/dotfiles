@@ -51,7 +51,7 @@
 ;; Company Mode
 (use-package company
   :init
-  (setq company-global-modes '(emacs-lisp-mode))
+  (setq company-global-modes '(emacs-lisp-mode go-mode))
   :hook ((after-init . global-company-mode)))
 
 ;; Projectile
@@ -93,6 +93,12 @@
   :ensure t
   :config
   (exec-path-from-shell-initialize))
+
+(use-package go-mode
+  :ensure t
+  :commands (go-mode)
+  :mode (("\\.go\\'" . go-mode))
+  :hook ((go-mode . (lambda () (setq tab-width 4)))))
 
 (use-package avy)
 
