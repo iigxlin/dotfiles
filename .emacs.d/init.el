@@ -86,7 +86,9 @@
 	 ("\\.md\\'" . markdown-mode)
 	 ("\\.markdown\\'" . markdown-mode))
   :init
-  (setq markdown-command "multimarkdown"))
+  (setq markdown-command "multimarkdown")
+  (evil-define-key 'normal markdown-mode-map
+    (kbd "<RET>") 'markdown-follow-link-at-point))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))

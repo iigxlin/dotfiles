@@ -26,7 +26,9 @@
     (kbd "<leader>c") 'org-capture)
   (evil-define-key 'normal org-mode-map
     (kbd "TAB") 'org-cycle
-    (kbd "RET") 'org-open-at-point)
+    (kbd "RET") 'org-open-at-point
+    (kbd "<leader>os") 'org-schedule
+    (kbd "<leader>od") 'org-deadline)
 
   ;; todo
   (setq org-todo-keywords
