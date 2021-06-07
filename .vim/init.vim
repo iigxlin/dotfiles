@@ -105,6 +105,7 @@ nnoremap ]ww :wincmd j <CR>
 nnoremap <leader>cd :cd %:p:h<CR> :pwd<CR>
 
 source ~/.dotfiles/.vim/plugins/init.vim
+source ~/.dotfiles/.vim/keybindings.vim
 
 silent colorscheme onehalfdark
 

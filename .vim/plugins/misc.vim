@@ -1,7 +1,5 @@
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
-map <C-n> :NERDTreeToggle<CR>
-
 Plug 'skywind3000/asyncrun.vim'
 
 let g:asyncrun_open = 6 " the number of lines of quickfix window

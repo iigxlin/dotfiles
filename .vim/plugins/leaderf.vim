@@ -19,4 +19,4 @@ xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
 
 let g:Lf_WorkingDirectoryMode = 'AF'
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git', '.hg']
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git', '.hg', '.projectile']

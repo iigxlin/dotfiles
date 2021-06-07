@@ -36,6 +36,7 @@
 
 (require 'init-evil-mode)
 (require 'init-org-mode)
+(require 'init-lsp-mode)
 
 ;; ledger-mode
 (use-package ledger-mode
