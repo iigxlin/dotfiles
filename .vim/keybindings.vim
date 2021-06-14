@@ -43,3 +43,13 @@ function! s:split_line_text_at_cursor()
   let text_before_cursor = (col('.') > 1) ? line_text[: col('.')-2] : ''
   return [text_before_cursor, text_after_cursor]
 endfunction
+
+function! s:toggle_quickfix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <silent> <leader>c :call s:toggle_quickfix()<cr>

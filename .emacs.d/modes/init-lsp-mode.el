@@ -8,6 +8,6 @@
   (evil-define-key 'normal lsp-mode-map
     (kbd "gd") 'lsp-find-definition
     (kbd "gr") 'lsp-find-references)
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.git\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.git\\'"))
 
 (provide 'init-lsp-mode)

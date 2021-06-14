@@ -18,6 +18,7 @@
 (setq use-package-always-ensure t)
 
 (xterm-mouse-mode 1) ;; Enable mouse
+(add-to-list 'load-path "~/.dotfiles/.emacs.d/")
 (add-to-list 'load-path "~/.dotfiles/.emacs.d/modes/")
 
 (use-package atom-one-dark-theme
@@ -37,6 +38,7 @@
 (require 'init-evil-mode)
 (require 'init-org-mode)
 (require 'init-lsp-mode)
+(require 'init-mu4e)
 
 ;; ledger-mode
 (use-package ledger-mode

@@ -4,3 +4,6 @@ let g:vimwiki_list = [{'path': '~/Documents/notes',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 au FileType vimwiki setlocal textwidth=72
+
+let g:vimwiki_CJK_length = 1
+let g:vimwiki_url_maxsave = 0
