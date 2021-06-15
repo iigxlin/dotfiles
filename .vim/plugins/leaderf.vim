@@ -1,5 +1,3 @@
-Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
-
 " " Show icons, icons are shown by default
 let g:Lf_ShowDevIcons = 1
 
@@ -19,4 +17,5 @@ xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 noremap go :<C-U>Leaderf! rg --recall<CR>
 
 let g:Lf_WorkingDirectoryMode = 'AF'
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git', '.hg', '.projectile']
+
+let g:Lf_RootMarkers += ['.project', '.root', '.svn', '.git', '.hg', '.projectile']

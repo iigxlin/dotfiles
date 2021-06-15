@@ -4,12 +4,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let s:plugins = split(expand('~/.dotfiles/.vim/plugins/*.vim'))
+let s:plugins = split(expand('~/.dotfiles/.vim/plugins/*.plug'))
+let s:settings = split(expand('~/.dotfiles/.vim/plugins/*.vim'))
 
 function! s:load_plugins()
     for plugin in s:plugins
-        if plugin !~ 'init.vim'
-            exec "source " . plugin
+        exec "source " . plugin
+    endfor
+endfunction
+
+function! s:load_settings()
+    for setting in s:settings
+        if setting !~ 'init.vim'
+            exec "source " . setting
         endif
     endfor
 endfunction
@@ -17,3 +24,5 @@ endfunction
 call plug#begin('~/.vim/plugged')
 call s:load_plugins()
 call plug#end()
+
+call s:load_settings()

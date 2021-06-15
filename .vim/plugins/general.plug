@@ -1,0 +1,9 @@
+Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
+Plug 'Valloric/YouCompleteMe', {
+            \ 'do': 'python3 ./install.py --clangd-completer',
+            \ 'for': ['python', 'cpp', 'go', 'gdscript']
+            \ }
+Plug 'dense-analysis/ale'
+
+let g:ycm_language_server = []
+let g:Lf_RootMarkers = []
