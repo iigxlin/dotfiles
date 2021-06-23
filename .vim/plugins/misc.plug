@@ -10,4 +10,7 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+" colorscheme
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'joshdick/onedark.vim'

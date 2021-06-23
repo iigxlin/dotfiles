@@ -5,6 +5,7 @@ bindkey -e
 EDITOR=vim
 
 export LANG=en_US.UTF-8
+export GPG_KEY=$(tty)
 
 # Edit command line
 autoload -U edit-command-line

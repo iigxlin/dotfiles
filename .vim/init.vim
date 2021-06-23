@@ -48,9 +48,6 @@ if has("gui_running")
     endif
 endif
 
-if has("macunix")
-endif
-
 " Identation
 
 set autoindent
@@ -107,7 +104,7 @@ nnoremap <leader>cd :cd %:p:h<CR> :pwd<CR>
 source ~/.dotfiles/.vim/plugins/init.vim
 source ~/.dotfiles/.vim/keybindings.vim
 
-silent colorscheme onehalfdark
+silent colorscheme onedark
 
 highlight Pmenu ctermbg=grey
 set exrc

@@ -4,6 +4,7 @@ Plug 'Valloric/YouCompleteMe', {
             \ 'for': ['python', 'cpp', 'go', 'gdscript']
             \ }
 Plug 'dense-analysis/ale'
+Plug 'sheerun/vim-polyglot'
 
 let g:ycm_language_server = []
 let g:Lf_RootMarkers = []

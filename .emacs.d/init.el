@@ -38,7 +38,7 @@
 (require 'init-evil-mode)
 (require 'init-org-mode)
 (require 'init-lsp-mode)
-(require 'init-mu4e)
+(require 'init-mu4e nil 'noerror)
 
 ;; ledger-mode
 (use-package ledger-mode
