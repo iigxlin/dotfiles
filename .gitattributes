@@ -1,2 +1,3 @@
 .emacs.d/init-mu4e.el filter=git-crypt diff=git-crypt
 .offlineimaprc filter=git-crypt diff=git-crypt
+.muttrc filter=git-crypt diff=git-crypt
