@@ -38,7 +38,7 @@
 (require 'init-evil-mode)
 (require 'init-org-mode)
 (require 'init-lsp-mode)
-(require 'init-mu4e nil 'noerror)
+(require 'init-mu4e)
 
 ;; ledger-mode
 (use-package ledger-mode
@@ -106,8 +106,3 @@
   :hook ((go-mode . (lambda () (setq tab-width 4)))))
 
 (use-package avy)
-
-(use-package paredit
-  :hook ((emacs-lisp-mode . enable-paredit-mode)
-	 (lisp-mode . enable-paredit-mode)
-	 (scheme-mode . enable-paredit-mode)))
