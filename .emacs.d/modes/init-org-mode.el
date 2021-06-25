@@ -27,6 +27,7 @@
   (evil-define-key 'normal org-mode-map
     (kbd "TAB") 'org-cycle
     (kbd "RET") 'org-open-at-point
+    (kbd "<leader>ot") 'org-todo
     (kbd "<leader>os") 'org-schedule
     (kbd "<leader>od") 'org-deadline)
 

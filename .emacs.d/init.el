@@ -106,3 +106,8 @@
   :hook ((go-mode . (lambda () (setq tab-width 4)))))
 
 (use-package avy)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
