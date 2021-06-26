@@ -10,6 +10,8 @@
       `(("." . ,(concat user-emacs-directory "backups"))))
 (setq-default fill-column 72)
 
+(setq recentf-max-saved-items 100)
+
 (dolist (package '(use-package))
   (unless (package-installed-p package)
     (package-refresh-contents)
