@@ -64,3 +64,4 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
+source $HOME/.dotfiles/.aliases
