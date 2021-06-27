@@ -29,7 +29,8 @@
     (kbd "RET") 'org-open-at-point
     (kbd "<leader>ot") 'org-todo
     (kbd "<leader>os") 'org-schedule
-    (kbd "<leader>od") 'org-deadline)
+    (kbd "<leader>od") 'org-deadline
+    (kbd "<leader>or") 'org-refile)
 
   ;; todo
   (setq org-todo-keywords
@@ -40,7 +41,9 @@
   (setq org-tag-alist '((:startgroup . nil)
 			("work" . ?w) ("home" . ?h) ("errants" . ?e)
 			(:endgroup . nil)
-			("@phone" . ?p)))
+			("phone" . ?p)
+			("FLAGGED" . ?f)
+			("URGENT" . ?u)))
 
   ;; org babel
   (org-babel-do-load-languages
