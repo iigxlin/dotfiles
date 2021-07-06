@@ -52,7 +52,6 @@
 (require 'init-lsp-mode)
 (require 'init-mu4e)
 
-;; ledger-mode
 (use-package ledger-mode
   :mode (("\\.journal$" . ledger-mode))
   :config

@@ -31,7 +31,9 @@
     (kbd "<leader>od") 'org-deadline
     (kbd "<leader>or") 'org-refile
     (kbd "<leader>oil") 'org-insert-link
-    (kbd "<leader>oih") 'org-insert-heading)
+    (kbd "<leader>oih") 'org-insert-heading
+    (kbd "<leader>oci") 'org-clock-in
+    (kbd "<leader>oco") 'org-clock-out)
   (setq org-tags-exclude-from-inheritance
 	'("PROJECT"))
 
@@ -65,7 +67,10 @@
   ;; org babel
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((shell . t))))
+   '((shell . t)))
+
+  ;; org-habit
+  (add-to-list 'org-modules 'org-habit t))
 
 (use-package org-agenda
   :ensure nil
@@ -74,6 +79,8 @@
   :init
   (setq org-agenda-dim-blocked-tasks nil)
   (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
+
+
   (setq org-deadline-warning-days 10)
   (setq org-agenda-compact-blocks t)
   (setq org-agenda-custom-commands

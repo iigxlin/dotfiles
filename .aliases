@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 alias mu4e='emacs -f mu4e'
+alias todo='emacs ~/notes/todo.org'
