@@ -22,7 +22,6 @@
   (add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
   (setq org-agenda-start-on-weekday 0)
   (setq org-adapt-indentation nil)
-  (setq org-return-follows-link t)
   (setq org-descriptive-links nil)
   (evil-define-key 'normal org-mode-map
     (kbd "TAB") 'org-cycle
@@ -33,7 +32,8 @@
     (kbd "<leader>oil") 'org-insert-link
     (kbd "<leader>oih") 'org-insert-heading
     (kbd "<leader>oci") 'org-clock-in
-    (kbd "<leader>oco") 'org-clock-out)
+    (kbd "<leader>oco") 'org-clock-out
+    (kbd "<leader>sp") 'org-set-property)
   (setq org-tags-exclude-from-inheritance
 	'("PROJECT"))
 
@@ -125,4 +125,4 @@
 		(org-save-all-org-buffers)
 		(org-agenda-quit))))
 
-(provide 'init-org-mode)
+(provide 'init-org)

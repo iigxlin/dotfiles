@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-alias mu4e='emacs -f mu4e'
-alias todo='emacs ~/notes/todo.org'
+alias emacs='emacs -nw'
+alias mu4e='emacs -nw -f mu4e'
+alias todo='emacs -nw ~/notes/todo.org'

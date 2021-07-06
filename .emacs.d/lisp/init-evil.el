@@ -25,4 +25,4 @@
   :config
   (evilem-default-keybindings "SPC"))
 
-(provide 'init-evil-mode)
+(provide 'init-evil)

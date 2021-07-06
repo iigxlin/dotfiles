@@ -94,11 +94,6 @@ set tags=./.tags;,.tags
 
 " mapping
 let mapleader=',' " change the key <leader>
-inoremap jk <Esc>
-nnoremap [w <c-w>h <CR>
-nnoremap [ww <c-w>k <CR>
-nnoremap ]w :wincmd l <CR>
-nnoremap ]ww :wincmd j <CR>
 nnoremap <leader>cd :cd %:p:h<CR> :pwd<CR>
 
 source ~/.dotfiles/.vim/plugins/init.vim
