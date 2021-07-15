@@ -2,6 +2,33 @@
 
 dotfiles_dir=$(cd -- "$(dirname ${BASH_SOURCE})" > /dev/null 2>&1; pwd -P)
 
-ln -s $dotfiles_dir/.emacs.d $HOME/.emacs.d
-ln -s $dotfiles_dir/.macos $HOME/.macos
-ln -s $dotfiles_dir/.urlview $HOME/.urlview
+remove_and_link () {
+    for var in $@
+    do
+        if [ -L $HOME/$var ] && [ -e $HOME/$var ] && \
+            [ "$(readlink -- $HOME/$var)" = "$dotfiles_dir/$var" ]; then
+            return
+        fi
+
+        rm -rf $HOME/$var
+        ln -s $dotfiles_dir/$var $HOME/$var
+    done
+}
+
+link_all () {
+    remove_and_link .ctags.d .mutt bin .alias .macos \
+        .mbsyncrc .msmtprc  .tmux.conf .urlview .zshrc \
+        .vimrc .vim
+}
+
+main () {
+    if [ $# -eq 0 ] || [ $1 -eq 'all' ]; then
+        link_all
+        return
+    fi
+
+    remove_and_link $@
+}
+
+main $@
+

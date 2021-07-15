@@ -4,8 +4,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let s:plugins = split(expand('~/.dotfiles/.vim/plugins/*.plug'))
-let s:settings = split(expand('~/.dotfiles/.vim/plugins/*.vim'))
+let s:plugins = split(expand('~/.vim/plugin/*.plug'))
+let s:settings = split(expand('~/.vim/plugin/*.vim'))
 
 function! s:load_plugins()
     for plugin in s:plugins

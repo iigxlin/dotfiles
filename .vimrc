@@ -96,8 +96,8 @@ set tags=./.tags;,.tags
 let mapleader=',' " change the key <leader>
 nnoremap <leader>cd :cd %:p:h<CR> :pwd<CR>
 
-source ~/.dotfiles/.vim/plugins/init.vim
-source ~/.dotfiles/.vim/keybindings.vim
+source ~/.vim/plugin/init.vim
+source ~/.vim/keybindings.vim
 
 silent colorscheme onedark
 
