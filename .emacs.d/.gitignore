@@ -4,3 +4,7 @@ backups
 custom.el
 elpa
 *.eld
+bookmarks
+network-security.data
+org-clock-save.el
+transient

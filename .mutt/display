@@ -1,0 +1,8 @@
+# vim: filetype=muttrc
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
+set pager_index_lines=10
+
+source ~/.mutt/theme

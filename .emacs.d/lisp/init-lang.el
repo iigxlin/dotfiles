@@ -1,5 +1,7 @@
 (use-package ledger-mode
-  :mode (("\\.journal$" . ledger-mode)))
+  :mode (("\\.journal$" . ledger-mode))
+  :config
+  (setq ledger-default-date-format ledger-iso-date-format))
 
 (use-package markdown-mode
   :ensure t
@@ -15,15 +17,15 @@
 (use-package go-mode
   :ensure t
   :commands (go-mode)
-  :mode (("\\.go\\'" . go-mode))
+  :mode (("\\.go$" . go-mode))
   :hook ((go-mode . (lambda () (setq tab-width 4)))))
 
 (use-package lsp-mode
   :ensure t
+  :commands (lsp lsp-deferred)
   :hook
   ((go-mode . lsp-deferred)
    (lsp-mode . lsp-enable-which-key-integration))
-  :commands (lsp lsp-deferred)
   :config
   (evil-define-key 'normal lsp-mode-map
     (kbd "gd") 'lsp-find-definition

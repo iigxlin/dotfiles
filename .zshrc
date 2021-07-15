@@ -2,7 +2,8 @@ setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
-EDITOR=vim
+export VISUAL=vim
+export EDITOR=vim
 
 export LANG=en_US.UTF-8
 export GPG_KEY=$(tty)
@@ -37,6 +38,8 @@ Darwin)
     alias ls='ls -G'
     alias ll='ls -lhG'
     alias bug='brew upgrade --greedy'
+    
+    source ~/.macos
 ;;
 Linux)
     # commands for Linux

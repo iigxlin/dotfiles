@@ -1,6 +1,29 @@
 (setq tab-always-indent 'complete
       completion-cycle-threshold t)
 
+(when (version<= "26.0.50" emacs-version)
+  (global-display-line-numbers-mode))
+(setq vc-follow-symlinks t)
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+(setq-default fill-column 72)
+(menu-bar-mode -1)
+(xterm-mouse-mode 1) ;; Enable mouse
+
+(use-package atom-one-dark-theme
+  :config
+  (load-theme 'atom-one-dark t))
+(set-face-attribute 'default nil :font "Monaco" :height 150)
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
+
 (use-package recentf
   :ensure nil
   :config
@@ -41,7 +64,9 @@
   :init
   (setq company-global-modes
 	'(emacs-lisp-mode go-mode ledger-mode))
-  :hook ((after-init . global-company-mode)))
+  :hook ((after-init . global-company-mode))
+  :config
+  (setq company-minimum-prefix-length 1))
 
 (use-package projectile
   :init
@@ -50,3 +75,5 @@
   :config
   (setq projectile-cache-file (expand-file-name ".cache/projectile" user-emacs-directory))
   (projectile-mode 1))
+
+(provide 'init-misc)

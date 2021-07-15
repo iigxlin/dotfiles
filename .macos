@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export BROWSER='open -a safari'
+[ -d /Applications/Firefox.app ] && export BROWSER='open -a firefox'
