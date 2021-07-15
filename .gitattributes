@@ -1,5 +1,4 @@
 .emacs.d/lisp/init-mu4e.el filter=git-crypt diff=git-crypt
-offlineimap/.offlineimaprc filter=git-crypt diff=git-crypt
 .mutt/accounts/* filter=git-crypt diff=git-crypt
 .mbsyncrc filter=git-crypt diff=git-crypt
 .msmtprc filter=git-crypt diff=git-crypt
