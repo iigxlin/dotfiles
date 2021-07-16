@@ -18,7 +18,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-[ -d ~/.dotfiles/bin ] && export PATH="$HOME/.dotfiles/bin:$PATH"
+[ -d ~/bin ] && export PATH="$HOME/bin:$PATH"
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
@@ -67,4 +67,4 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
-source $HOME/.dotfiles/.aliases
+source $HOME/.aliases

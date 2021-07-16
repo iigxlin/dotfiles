@@ -7,16 +7,17 @@ remove_and_link () {
     do
         if [ -L $HOME/$var ] && [ -e $HOME/$var ] && \
             [ "$(readlink -- $HOME/$var)" = "$dotfiles_dir/$var" ]; then
-            return
+            continue
         fi
 
         rm -rf $HOME/$var
         ln -s $dotfiles_dir/$var $HOME/$var
+        echo "Linked: $HOME/$var -> $dotfiles_dir/$var"
     done
 }
 
 link_all () {
-    remove_and_link .ctags.d .mutt bin .alias .macos \
+    remove_and_link .ctags.d .mutt bin .aliases .macos \
         .mbsyncrc .msmtprc  .tmux.conf .urlview .zshrc \
         .vimrc .vim
 }
